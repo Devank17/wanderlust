@@ -53,9 +53,9 @@ const store = MongoStore.create({
   touchAfter: 24 * 3600,
 });
 
-store.on("error",()=>{
-  console.log(`ERROR IN MONGO SESSION STORE ${err}`)
-})
+store.on("error", () => {
+  console.log(`ERROR IN MONGO SESSION STORE ${err}`);
+});
 
 // * Session
 const sessionOptions = {
@@ -69,8 +69,6 @@ const sessionOptions = {
     httpOnly: true,
   },
 };
-
-
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -99,10 +97,10 @@ app.get("/demo", async (req, res) => {
   res.send(registeredUser);
 });
 
-// app.get("/", async (req, res) => {
-//   let allListings = await Listing.find({});
-//   res.render("listings/index.ejs", { allListings });
-// });
+app.get("/", async (req, res) => {
+  let allListings = await Listing.find({});
+  res.render("listings/index.ejs", { allListings });
+});
 
 // * Router
 app.use("/listings", listingRouter);
